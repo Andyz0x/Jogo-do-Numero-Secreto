@@ -22,27 +22,25 @@ function imprimirNoConsole(funcao){
 function verificarChute() {
     let chute = document.querySelector('input').value;
 
-    if (chute == numeroSecreto){
-        exibirTextoNaTela('h1', 'Acertou!');
-        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
-        let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}!`;
-        exibirTextoNaTela('p', mensagemTentativas);
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    }else{ 
-        if(chute > numeroSecreto){
-            exibirTextoNaTela('p', 'O número secreto é menor que o seu chute!');
-        } else { 
-            exibirTextoNaTela('p', 'O número secreto é maior!');
+    if (chute <1 || chute > numeroLimite){
+        alert(`Escolha um número de 1 a ${numeroLimite}`);
+    } else {  
+        if (chute == numeroSecreto){
+            exibirTextoNaTela('h1', 'Acertou!');
+            let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
+            let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}!`;
+            exibirTextoNaTela('p', mensagemTentativas);
+            document.getElementById('reiniciar').removeAttribute('disabled');
+        }else{ 
+            if(chute > numeroSecreto){
+                exibirTextoNaTela('p', 'O número secreto é menor que o seu chute!');
+            } else { 
+                exibirTextoNaTela('p', 'O número secreto é maior!');
+            }
+            tentativas++;
+            limparCampo();
         }
-        tentativas++;
-        limparCampo();
     }
-  
-   //contadorDeCliques++;
-    //console.log(chute == numeroSecreto);
-    //imprimirNoConsole('O numero secreto é ' + numeroSecreto); 
-    //imprimirNoConsole('Você clicou um total de ' + contadorDeCliques + ' vez(es).');
-   
 }
 
 
